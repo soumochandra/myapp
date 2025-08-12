@@ -1,0 +1,25 @@
+# Node modules
+myapp/node_modules/
+myapp/build/
+myapp/.env
+
+# Python
+backend/__pycache__/
+backend/*.pyc
+backend/env/
+backend/.env
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+
+#

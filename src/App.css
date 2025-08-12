@@ -1,8 +1,8 @@
 /* App.css */
 
 .predict-bg {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #232526 0%, #414345 100%);
+  min-height: 80vh;
+  background: linear-gradient(135deg, #312424 0%, #6e9fd0 100%);
   padding: 40px 0;
 }
 .card {

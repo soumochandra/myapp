@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PredictionCard from './PredictionCard';
- // Import the CSS file here
+import MeanPredictionCard from './MeanPredictionCard';
 
 const models = [
   { title: "1 Month Prediction", modelKey: "1_month", color: "#f7931a" },
@@ -11,19 +11,42 @@ const models = [
   { title: "5 Years Prediction", modelKey: "5_year", color: "#6c5ce7" }
 ];
 
-const Todos = () => (
-  <div className="predict-bg py-5">
-    <div className="container">
-      <div className="row justify-content-center">
-        {models.map((m) => (
-          <div className="col-md-6 col-lg-4 d-flex" key={m.modelKey}>
-            <PredictionCard title={m.title} modelKey={m.modelKey} color={m.color} />
+const Todos = () => {
+  const [predictions, setPredictions] = useState(Array(models.length).fill(null));
+
+  // Callback to update prediction for each card
+  const handlePrediction = (index, value) => {
+    setPredictions(prev => {
+      const updated = [...prev];
+      updated[index] = value;
+      return updated;
+    });
+  };
+
+  return (
+    <div className="predict-bg py-5">
+      <div className="container">
+        <div className="row justify-content-center">
+          {models.map((m, idx) => (
+            <div className="col-md-6 col-lg-4 d-flex" key={m.modelKey}>
+              <PredictionCard
+                title={m.title}
+                modelKey={m.modelKey}
+                color={m.color}
+                onPrediction={value => handlePrediction(idx, value)}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-lg-4 d-flex">
+            <MeanPredictionCard predictions={predictions} />
           </div>
-        ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Todos;
 
